@@ -3,12 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="A beautiful, serverless URL Shortener built for developer portfolios. Shorten links instantly and generate QR codes.">
-    <title>TinyLink | Sleek URL Shortener & QR Generator</title>
-    
-    <!-- Favicon -->
-    <link rel="shortcut icon" type="image/png" href="favicon.png?v=2">
-    <link rel="icon" type="image/png" href="favicon.png?v=2">
+    <meta name="description" content="An animated, serverless URL Shortener built for developer portfolios. Shorten links instantly and generate QR codes with custom styling.">
+    <title>TinyLink | Animated URL Shortener & QR Generator</title>
     
     <!-- Google Fonts for premium typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,6 +15,14 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Floating Particle Background -->
+    <div class="particles-container" aria-hidden="true">
+        <div class="particle particle-1"></div>
+        <div class="particle particle-2"></div>
+        <div class="particle particle-3"></div>
+        <div class="particle particle-4"></div>
+    </div>
+
     <!-- Abstract Ambient Background Gradients -->
     <div class="bg-glow bg-glow-1"></div>
     <div class="bg-glow bg-glow-2"></div>
@@ -26,10 +30,11 @@
     <!-- Main Container -->
     <main class="app-container">
         
-        <!-- Redirect View (Initially Hidden, shown via JS if redirecting) -->
-        <section id="redirect-view" class="glass-card hidden">
+        <!-- Redirect View (Initially Hidden) -->
+        <section id="redirect-view" class="glass-card redirect-card hidden">
             <div class="spinner-container">
-                <div class="spinner"></div>
+                <div class="spinner-outer"></div>
+                <div class="spinner-inner"></div>
             </div>
             <h2 class="redirect-title">Securing Connection...</h2>
             <p class="redirect-subtitle">Redirecting you to your destination link.</p>
@@ -41,30 +46,40 @@
             <!-- Header Section -->
             <header class="header">
                 <div class="logo-area">
-                    <div class="logo-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                    <div class="logo-icon-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="logo-svg"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
                     </div>
                     <span class="logo-text">Tiny<span class="gradient-text">Link</span></span>
                 </div>
-                <h1 class="main-title">Shorten Your Links, <br><span class="gradient-text">Expand Your Reach</span></h1>
-                <p class="main-subtitle">A clean, secure, and lightning-fast tool to shrink long URLs and generate scan-ready QR codes for your portfolio.</p>
+                <h1 class="main-title">Shorten Your Links, <br><span class="gradient-text animate-gradient">Expand Your Reach</span></h1>
+                <p class="main-subtitle">A highly animated, secure, and lightning-fast tool to shrink long URLs and generate scan-ready QR codes for your portfolio.</p>
             </header>
 
             <!-- Interactive Shortener Card -->
             <div class="glass-card shortener-card">
+                <div class="card-shine"></div>
                 <form id="shortener-form" novalidate>
-                    <div class="input-wrapper">
-                        <label for="long-url" class="visually-hidden">Enter your long URL</label>
-                        <input 
-                            type="url" 
-                            id="long-url" 
-                            placeholder="Paste your long URL here (e.g. https://github.com/...)" 
-                            required 
-                            autocomplete="off"
-                        >
-                        <button type="submit" id="btn-shorten" class="btn btn-primary">
-                            <span>Shorten</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    <div class="input-container">
+                        <div class="input-wrapper">
+                            <input 
+                                type="url" 
+                                id="long-url" 
+                                required 
+                                autocomplete="off"
+                                placeholder=" "
+                            >
+                            <label for="long-url" class="floating-label">Paste your long URL here (e.g. https://github.com/...)</label>
+                            <div class="input-focus-border"></div>
+                        </div>
+                        
+                        <!-- Uiverse-Inspired Glowing Border Button -->
+                        <button type="submit" id="btn-shorten" class="uiverse-btn">
+                            <span class="btn-border"></span>
+                            <span class="btn-bg"></span>
+                            <span class="btn-text">
+                                <span>Shorten</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="btn-arrow"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                            </span>
                         </button>
                     </div>
                     <span id="error-message" class="error-text hidden" role="alert">Please enter a valid URL (including https:// or http://).</span>
@@ -78,10 +93,15 @@
                             <label class="input-label">Your Short Link</label>
                             <div class="copy-wrapper">
                                 <input type="text" id="shortened-url-output" readonly>
-                                <button id="btn-copy" class="btn btn-secondary" aria-label="Copy shortened URL">
-                                    <span id="copy-btn-text">Copy</span>
-                                    <svg id="copy-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                                    <svg id="success-icon" class="hidden" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" color="#10B981"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                
+                                <!-- Uiverse-Inspired Copy Button -->
+                                <button id="btn-copy" class="uiverse-copy-btn" aria-label="Copy shortened URL">
+                                    <span class="copy-bg"></span>
+                                    <span class="copy-content">
+                                        <span id="copy-btn-text">Copy</span>
+                                        <svg id="copy-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="copy-svg"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                                        <svg id="success-icon" class="hidden success-svg" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" color="#10B981"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    </span>
                                 </button>
                             </div>
                         </div>
@@ -89,6 +109,7 @@
                         <!-- QR Code Container -->
                         <div class="qr-container">
                             <div class="qr-card">
+                                <div class="qr-border-glow"></div>
                                 <img id="qr-code-img" src="" alt="Scan QR Code to open shortened URL">
                             </div>
                             <div class="qr-actions">
@@ -105,6 +126,7 @@
             <!-- Features Grid -->
             <section class="features-section">
                 <div class="feature-card">
+                    <div class="card-glow-overlay"></div>
                     <div class="feature-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
                     </div>
@@ -112,6 +134,7 @@
                     <p>Uses optimized client-side routing to redirect visitors instantly with minimal loading time.</p>
                 </div>
                 <div class="feature-card">
+                    <div class="card-glow-overlay"></div>
                     <div class="feature-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
                     </div>
@@ -119,6 +142,7 @@
                     <p>Utilizes serverless database technology, showcasing real full-stack knowledge in your portfolio.</p>
                 </div>
                 <div class="feature-card">
+                    <div class="card-glow-overlay"></div>
                     <div class="feature-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
                     </div>

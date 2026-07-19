@@ -268,12 +268,14 @@ document.addEventListener("DOMContentLoaded", async () => {
             copyBtnText.textContent = "Copied!";
             copyIcon.classList.add("hidden");
             successIcon.classList.remove("hidden");
+            btnCopy.classList.add("copied");
             
             // Reset button after 2.5 seconds
             setTimeout(() => {
                 copyBtnText.textContent = "Copy";
                 copyIcon.classList.remove("hidden");
                 successIcon.classList.add("hidden");
+                btnCopy.classList.remove("copied");
             }, 2500);
         });
     });
